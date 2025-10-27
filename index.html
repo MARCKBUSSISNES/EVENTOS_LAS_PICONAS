@@ -214,8 +214,6 @@ function addProductWithCommentPrompt(p){
   persistWorkingCart();
   renderViewer();
 }
-Viewer();
-}
 function persistWorkingCart(){
   // only persist the categories and working cart if needed; we persist final sales separately
   localStorage.setItem('current_cart_working', JSON.stringify(cart));
@@ -556,4 +554,5 @@ init();
 
 </body>
 </html>
+
 
