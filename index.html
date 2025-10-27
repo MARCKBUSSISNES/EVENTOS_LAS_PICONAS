@@ -203,14 +203,18 @@ function saveCategories(){ localStorage.setItem('categories_v3', JSON.stringify(
 
 // CART: when adding, ask for optional comment but also allow inline edit later
 function addProductWithCommentPrompt(p){
-  const qty=Number(document.getElementById('qty').value)||1;
-  const comment = prompt('Comentario para este producto (ej. sin cebolla, extra salsa). Dejar vacío si no aplica:') || '';
-  // if same product name and same comment exists, increase qty
-  const existing = cart.find(c=>c.name===p.name && (c.comment||'')===comment);
-  if(existing){ existing.qty += qty; }
-  else{ cart.push({name:p.name,price:p.price,qty,comment}); }
+  const qty = Number(document.getElementById('qty').value) || 1;
+  const comment = ''; // sin comentario automático
+  const existing = cart.find(c => c.name === p.name && (c.comment || '') === comment);
+  if (existing) { 
+    existing.qty += qty; 
+  } else { 
+    cart.push({ name: p.name, price: p.price, qty, comment }); 
+  }
   persistWorkingCart();
   renderViewer();
+}
+Viewer();
 }
 function persistWorkingCart(){
   // only persist the categories and working cart if needed; we persist final sales separately
@@ -552,3 +556,4 @@ init();
 
 </body>
 </html>
+
